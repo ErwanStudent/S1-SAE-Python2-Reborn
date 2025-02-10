@@ -14,6 +14,6 @@ fi
 
 python3 affichage.py&
 python3 IA.py --equipe joueur1&
-python3 IA.py --equipe joueur2&
-python3 IA.py --equipe joueur3&
-python3 IA.py --equipe joueur4&
+# python3 IA.py --equipe joueur2&
+# python3 IAQuentin.py --equipe joueur3&
+# python3 IAQuentin.py --equipe joueur4&

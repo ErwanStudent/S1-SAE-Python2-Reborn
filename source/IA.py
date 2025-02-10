@@ -407,7 +407,7 @@ def obtenir_prochaine_direction(l_arene: dict, num_joueur: int, la_partie: dict)
 
 
     objet = None
-    max_distance = 8
+    max_distance = 10
     objets = objets_voisinage(l_arene, num_joueur, max_distance, objets_ignores)
     if len(objets):
         objets_tries = trier_objets(objets, l_arene, serpent_joueur)
@@ -422,16 +422,18 @@ def obtenir_prochaine_direction(l_arene: dict, num_joueur: int, la_partie: dict)
             queue = serpent.get_queue(serpent_joueur)
             queue_valeur = arene.get_val_boite(l_arene, queue[0], queue[1])
             tete_valeur = arene.get_val_boite(l_arene, position[0], position[1])
-            if (taille_serpent > 3 and queue_valeur < 32) or queue_valeur == tete_valeur:
+            if (taille_serpent >= 3 and (tete_valeur / 2) > queue_valeur) or queue_valeur == tete_valeur:
                 cur_dir = serpent.get_derniere_direction(serpent_joueur)
                 return inverse_directions[cur_dir]
 
     if not chemin:
         deplacement = obtenir_chemin_adequat(l_arene, num_joueur, position, serpent_joueur, False)
         if deplacement:
+            print("secours")
             chemin = fabriquer_chemin(l_arene, num_joueur, position, deplacement[3], False)
 
     if not chemin:
+        print("miam miam")
         cur_dir = serpent.get_derniere_direction(serpent_joueur)
         return inverse_directions[cur_dir]
     return get_coordinates(position, chemin[len(chemin) - 1])
